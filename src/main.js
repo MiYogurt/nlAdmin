@@ -8,7 +8,7 @@ import Antd from 'ant-design-vue'
 Vue.use(Antd)
 
 Vue.config.productionTip = false
-
+console.log(router)
 new Vue({
   router,
   store,
