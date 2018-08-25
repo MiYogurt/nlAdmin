@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="logo" />
-      <a-menu theme="dark" :defaultSelectedKeys="['home']" mode="inline" @click="handleClick">
+      <a-menu theme="dark" :defaultSelectedKeys="['home']" v-model="selectKeys" mode="inline" @click="handleClick">
         <template v-for="item in menus">
           <a-sub-menu
             :key="item.route.name"
@@ -30,15 +30,23 @@
 import { mapState } from "vuex";
 export default {
   data(){
-    return {};
+    return {
+      selectKeys: []
+    };
   },
   computed: mapState(['menus']),
+  mounted(){
+    window.resetSelectKeys = () => {
+      setTimeout(() => {
+        this.selectKeys = []
+      }, 1);
+    }
+  },
   methods: {
     handleClick(e) {
       console.log('click', e);
       this.$router.push({name: e.key});
     }
-  
-  }
+  },
 }
 </script>

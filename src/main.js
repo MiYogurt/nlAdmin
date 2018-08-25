@@ -26,6 +26,7 @@ router.beforeEach((to, from, next) => {
     }
     next('/')
     app.$message.error('需要管理员才能访问')
+    window.resetSelectKeys && window.resetSelectKeys()
   } else {
     next()
   }
