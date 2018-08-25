@@ -8,17 +8,17 @@
             v-if="item.route.children && item.show"
           >
             <span slot="title">
-              <a-icon :type="item.icon" />
-              <span v-text="item.text"></span>
+              <a-icon :type="item.route.meta.icon" />
+              <span v-text="item.route.meta.text"></span>
             </span>
-            <a-menu-item v-for="submenu in item.route.children" :key="submenu.name" v-if="submenu.show">{{ submenu.text }}</a-menu-item>
+            <a-menu-item v-for="submenu in item.route.children" :key="submenu.name" v-if="submenu.show">{{ submenu.meta.text }}</a-menu-item>
           </a-sub-menu>
           <a-menu-item 
             :key="item.route.name" 
             v-if="item.show && !item.route.children"
           >
-            <a-icon :type="item.icon" />
-            <span v-text="item.text"></span>
+            <a-icon :type="item.route.meta.icon" />
+            <span v-text="item.route.meta.text"></span>
           </a-menu-item>
         </template>
       </a-menu>
@@ -36,6 +36,7 @@ export default {
   },
   computed: mapState(['menus']),
   mounted(){
+    console.log(this.menus)
     window.resetSelectKeys = () => {
       setTimeout(() => {
         this.selectKeys = []
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     handleClick(e) {
-      console.log('click', e);
+      // console.log('click', e);
       this.$router.push({name: e.key});
     }
   },

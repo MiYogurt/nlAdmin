@@ -7,6 +7,9 @@
 
 <script>
 export default {
+    mounted(){
+        // console.log(this);
+    },
     methods: {
         addRoute(){
             const route = {

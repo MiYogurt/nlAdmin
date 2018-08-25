@@ -1,0 +1,20 @@
+{
+    "users": [{
+        "name": "yugo",
+        "roles": ["admin", "member"],
+        "permissions": [
+            "user-list",
+            "user-create",
+            "user-delete",
+            "user-update"
+        ],
+        "password": "888888",
+        "avatar": "https://avatars1.githubusercontent.com/u/10082395?s=460&v=4"
+    }, {
+        "name": "coco",
+        "roles": ["member"],
+        "permissions": ["user-list"],
+        "password": "test123",
+        "avatar": "https://avatars0.githubusercontent.com/u/20496294?s=100&v=4"
+    }]
+}

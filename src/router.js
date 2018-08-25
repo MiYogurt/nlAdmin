@@ -3,29 +3,36 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import UserIndex from "./views/user/index.vue";
 import UserCreate from "./views/user/create.vue";
+import UserList from "./views/user/list.vue";
 
 Vue.use(Router)
 
 // 我想要显示在左侧栏的路由与按钮
 const menuConfig = [
   {
-    icon: 'home',
-    text: '首页',
     show: true,
-    route: { path: '/', name: 'home', component: Home }
+    route: {
+      path: '/', name: 'home', component: Home, meta: {
+        icon: 'home',
+        text: '首页',
+      }
+    }
   },
   {
-    icon: 'user',
-    text: '用户管理',
     show: true,
     route: {
       path: '/user',
       name: 'user',
-      meta: { role: 'admin' },
+      meta: {
+        role: 'admin', 
+        icon: 'user',
+        text: '用户管理',
+        no_breadcrumb_link: true
+      },
       component: UserIndex,
       children: [
-        { path: 'create', show: true, name: 'user-create', text: '创建用户', component: UserCreate },
-        { path: 'list', show: false, name: 'user-list', text: '用户列表', component: UserCreate }
+        { path: '', show: true, name: 'user-list', meta: { text: '用户列表' }, component: UserList },
+        { path: 'create', show: true, name: 'user-create', meta: { text: '创建用户'}, component: UserCreate },
       ]
     }
   },
