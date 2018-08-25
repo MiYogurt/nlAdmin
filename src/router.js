@@ -21,6 +21,7 @@ const menuConfig = [
     route: {
       path: '/user',
       name: 'user',
+      meta: { role: 'admin' },
       component: UserIndex,
       children: [
         { path: 'create', show: true, name: 'user-create', text: '创建用户', component: UserCreate },
@@ -40,6 +41,8 @@ const routes = menuConfig.map(c => c.route).filter(Boolean).concat(noShowRoute);
 
 export { menuConfig }
 
-export default new Router({
+const router = new Router({
   routes,
 })
+
+export default router

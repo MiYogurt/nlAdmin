@@ -9,8 +9,24 @@ Vue.use(Antd)
 
 Vue.config.productionTip = false
 
-new Vue({
+
+const app = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+const getRole = () => store.state.role
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.role == 'admin')) {
+    if (getRole() === 'admin') {
+      return next() // 一定要return next()
+    }
+    next('/')
+    app.$message.error('需要管理员才能访问')
+  } else {
+    next()
+  }
+})
