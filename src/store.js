@@ -10,7 +10,10 @@ export default new Vuex.Store({
     menus: menuConfig
   },
   mutations: {
-
+    addRoute(state, payload){
+      state.menus = state.menus.concat(payload)
+      return state
+    }
   },
   actions: {
 

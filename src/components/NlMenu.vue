@@ -27,11 +27,12 @@
 
 
 <script>
-import { menuConfig } from "../router";
+import { mapState } from "vuex";
 export default {
   data(){
-    return {menus: menuConfig};
+    return {};
   },
+  computed: mapState(['menus']),
   methods: {
     handleClick(e) {
       console.log('click', e);
