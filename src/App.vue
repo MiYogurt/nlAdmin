@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <a-layout id="app" style="min-height: 100vh">
+    <a-layout-sider
+      collapsible
+      v-model="collapsed"
+    >
+      <nl-menu></nl-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-content style="margin: 0 16px">
+        <router-view></router-view>
+      </a-layout-content>
+      <a-layout-footer style="text-align: center">
+        power by nodelover.me
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NlMenu from "@/components/NlMenu.vue";
 export default {
-  name: 'app',
+  data() {
+    return {
+      collapsed: false,
+    }
+  },
   components: {
-    HelloWorld
+    NlMenu
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#app .logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
 }
 </style>
