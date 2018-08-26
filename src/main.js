@@ -7,8 +7,12 @@ import 'ant-design-vue/dist/antd.css';
 import Antd from 'ant-design-vue'
 Vue.use(Antd)
 
-Vue.config.productionTip = false
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
 
+Vue.config.productionTip = false
 
 const app = new Vue({
   router,

@@ -1,4 +1,5 @@
 <template>
+  <a-locale-provider :locale="locale">
   <a-layout id="app" style="min-height: 100vh">
     <a-layout-sider
       collapsible
@@ -26,21 +27,25 @@
       </a-layout-footer>
     </a-layout>
   </a-layout>
+  </a-locale-provider>
 </template>
 <script>
 import NlMenu from "@/components/NlMenu.vue";
+import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
+
 export default {
   data() {
     return {
       collapsed: false,
-      breadcrumbs: []
+      breadcrumbs: [],
+      locale: zhCN,
     }
   },
   components: {
     NlMenu
   },
   watch: {
-    '$route': function(newValue, oldValue){
+    '$route': function(newValue){
       this.breadcrumbs = newValue.matched.map(route => ({name: route.name, ...route.meta}))
     }
   }
