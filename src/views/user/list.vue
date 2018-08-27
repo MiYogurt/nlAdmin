@@ -105,8 +105,12 @@
 </template>
 <script>
 export default {
+  name: 'user-list-view',
   mounted() {
     this.fetch();
+  },
+  activated(){
+      console.log('trigger user-list-view keep alive hook');
   },
   data() {
     return {

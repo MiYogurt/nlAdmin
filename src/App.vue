@@ -8,7 +8,9 @@
       <nl-menu></nl-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-header style="background: #fff; padding: 0 16px" >
+        <a-tag v-for="tag in openTags" closable @click="backUrl(tag.path)" @close="closeTag(tag.path, $event)" :key="tag.path">{{ tag.text }}</a-tag>
+      </a-layout-header>
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item v-for="breadcrumb in breadcrumbs" :key="breadcrumb.name"> 
@@ -20,7 +22,10 @@
             </template>
           </a-breadcrumb-item>
         </a-breadcrumb>
-        <router-view></router-view>
+        <!-- 子路由里面的 router-view 管不着 -->
+        <keep-alive :exclude="['user-list-view']">
+          <router-view></router-view>
+        </keep-alive>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
         power by nodelover.me
@@ -32,6 +37,7 @@
 <script>
 import NlMenu from "@/components/NlMenu.vue";
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -41,8 +47,18 @@ export default {
       locale: zhCN,
     }
   },
+  computed: mapState(['openTags']),
   components: {
     NlMenu
+  },
+  methods: {
+    closeTag(path, e){
+      e.preventDefault()
+      this.$store.commit('removeTag', path);
+    },
+    backUrl(path){
+      this.$router.push(path);
+    }
   },
   watch: {
     '$route': function(newValue){
